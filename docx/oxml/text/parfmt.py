@@ -407,7 +407,7 @@ class CT_Border(BaseOxmlElement):
         left = self.get_or_add_left()
         left.type = 'single'
         left.size = value
-        left.space = 0
+        left.space = 1
         left.color = 'auto'
 
     @property
@@ -441,7 +441,7 @@ class CT_Border(BaseOxmlElement):
         right = self.get_or_add_right()
         right.type = 'single'
         right.size = value
-        right.space = 0
+        right.space = 1
         right.color = 'auto'
 
 
