@@ -51,14 +51,14 @@ class ParagraphFormat(ElementProxy):
     #     pPr = self._element.get_or_add_pPr()
     #     pPr.border = value
 
-    @property
-    def border(self):
-        pPr = self._element.pPr
-        if pPr is None:
-            return None
-        return pPr.border
-
-    @border.setter
+    # @property
+    # def border(self):
+    #     pPr = self._element.pPr
+    #     if pPr is None:
+    #         return None
+    #     return pPr.border
+    #
+    # @border.setter
     def border(self, value):
         pPr = self._element.get_or_add_pPr()
         border = pPr.get_or_add_border()
