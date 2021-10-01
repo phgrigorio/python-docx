@@ -385,8 +385,8 @@ class CT_Border(BaseOxmlElement):
     #
     # @border_top.setter
     def border_top(self, size, space, type):
-        if value is None and self.top is None:
-            return
+        # if value is None and self.top is None:
+        #     return
         top = self.get_or_add_top()
         top.type = type
         top.size = size
@@ -402,8 +402,8 @@ class CT_Border(BaseOxmlElement):
     #
     # @border_left.setter
     def border_left(self, size, space, type):
-        if value is None and self.left is None:
-            return
+        # if value is None and self.left is None:
+        #     return
         left = self.get_or_add_left()
         left.type = type
         left.size = size
@@ -419,8 +419,8 @@ class CT_Border(BaseOxmlElement):
     #
     # @border_bottom.setter
     def border_bottom(self, size, space, type):
-        if value is None and self.bottom is None:
-            return
+        # if value is None and self.bottom is None:
+        #     return
         bottom = self.get_or_add_bottom()
         bottom.type = type
         bottom.size = size
@@ -436,8 +436,8 @@ class CT_Border(BaseOxmlElement):
     #
     # @border_right.setter
     def border_right(self, size, space, type):
-        if value is None and self.right is None:
-            return
+        # if value is None and self.right is None:
+        #     return
         right = self.get_or_add_right()
         right.type = type
         right.size = size
