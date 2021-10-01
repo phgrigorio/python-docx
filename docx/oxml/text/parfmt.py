@@ -65,18 +65,18 @@ class CT_PPr(BaseOxmlElement):
         self.insert(0, border)
         return border
 
-    @property
-    def border_top(self):
-        border = self.border
-        if border is None:
-            return None
-        return border.top
-
-    @border_top.setter
-    def border_top(self, value):
-        border = self.get_or_add_border()
-        border.border_top = value
-
+    # @property
+    # def border_top(self):
+    #     border = self.border
+    #     if border is None:
+    #         return None
+    #     return border.top
+    #
+    # @border_top.setter
+    # def border_top(self, value):
+    #     border = self.get_or_add_border()
+    #     border.border_top = value
+    #
 
     @property
     def first_line_indent(self):
