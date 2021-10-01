@@ -59,13 +59,33 @@ class ParagraphFormat(ElementProxy):
     #     return pPr.border
     #
     # @border.setter
-    def border(self, value):
+    def border(self, size=4, space=0, type='single'):
         pPr = self._element.get_or_add_pPr()
         border = pPr.get_or_add_border()
-        border.border_top = value
-        border.border_left = value
-        border.border_bottom = value
-        border.border_right = value
+        border.border_top(size, space, type)
+        border.border_left(size, space, type)
+        border.border_bottom(size, space, type)
+        border.border_right(size, space, type)
+
+    def border_top(self, size=4, space=0, type='single'):
+        pPr = self._element.get_or_add_pPr()
+        border = pPr.get_or_add_border()
+        border.border_top(size, space, type)
+
+    def border_left(self, size=4, space=0, type='single'):
+        pPr = self._element.get_or_add_pPr()
+        border = pPr.get_or_add_border()
+        border.border_left(size, space, type)
+
+    def border_bottom(self, size=4, space=0, type='single'):
+        pPr = self._element.get_or_add_pPr()
+        border = pPr.get_or_add_border()
+        border.border_bottom(size, space, type)
+
+    def border_right(self, size=4, space=0, type='single'):
+        pPr = self._element.get_or_add_pPr()
+        border = pPr.get_or_add_border()
+        border.border_right(size, space, type)
 
     @property
     def first_line_indent(self):

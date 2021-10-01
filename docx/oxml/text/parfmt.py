@@ -376,99 +376,99 @@ class CT_Border(BaseOxmlElement):
     bottom = ZeroOrOne('w:bottom', successors=())
     right = ZeroOrOne('w:right', successors=())
 
-    @property
-    def border_top(self):
-        top = self.top
-        if top is None:
-            return None
-        return top
-
-    @border_top.setter
-    def border_top(self, value):
+    # @property
+    # def border_top(self):
+    #     top = self.top
+    #     if top is None:
+    #         return None
+    #     return top
+    #
+    # @border_top.setter
+    def border_top(self, size, space, type):
         if value is None and self.top is None:
             return
         top = self.get_or_add_top()
-        top.type = 'single'
-        top.size = value
-        top.space = 0
+        top.type = type
+        top.size = size
+        top.space = space
         top.color = 'auto'
         
-    @property
-    def border_left(self):
-        left = self.left
-        if left is None:
-            return None
-        return left
-
-    @border_left.setter
-    def border_left(self, value):
+    # @property
+    # def border_left(self):
+    #     left = self.left
+    #     if left is None:
+    #         return None
+    #     return left
+    #
+    # @border_left.setter
+    def border_left(self, size, space, type):
         if value is None and self.left is None:
             return
         left = self.get_or_add_left()
-        left.type = 'single'
-        left.size = value
-        left.space = 1
+        left.type = type
+        left.size = size
+        left.space = space
         left.color = 'auto'
 
-    @property
-    def border_bottom(self):
-        bottom = self.bottom
-        if bottom is None:
-            return None
-        return bottom
-
-    @border_bottom.setter
-    def border_bottom(self, value):
+    # @property
+    # def border_bottom(self):
+    #     bottom = self.bottom
+    #     if bottom is None:
+    #         return None
+    #     return bottom
+    #
+    # @border_bottom.setter
+    def border_bottom(self, size, space, type):
         if value is None and self.bottom is None:
             return
         bottom = self.get_or_add_bottom()
-        bottom.type = 'single'
-        bottom.size = value
-        bottom.space = 0
+        bottom.type = type
+        bottom.size = size
+        bottom.space = space
         bottom.color = 'auto'
 
-    @property
-    def border_right(self):
-        right = self.right
-        if right is None:
-            return None
-        return right
-
-    @border_right.setter
-    def border_right(self, value):
+    # @property
+    # def border_right(self):
+    #     right = self.right
+    #     if right is None:
+    #         return None
+    #     return right
+    #
+    # @border_right.setter
+    def border_right(self, size, space, type):
         if value is None and self.right is None:
             return
         right = self.get_or_add_right()
-        right.type = 'single'
-        right.size = value
-        right.space = 1
+        right.type = type
+        right.size = size
+        right.space = space
         right.color = 'auto'
 
 
 class CT_BorderTop(BaseOxmlElement):
 
     type = OptionalAttribute('w:val', ST_String)
-    size = OptionalAttribute('w:sz', ST_TwipsMeasure)
+    size = OptionalAttribute('w:sz', XsdInt)
     space = OptionalAttribute('w:space', XsdInt)
     color = OptionalAttribute('w:color', ST_String)
 
 class CT_BorderLeft(BaseOxmlElement):
 
     type = OptionalAttribute('w:val', ST_String)
-    size = OptionalAttribute('w:sz', ST_TwipsMeasure)
+    size = OptionalAttribute('w:sz', XsdInt)
     space = OptionalAttribute('w:space', XsdInt)
     color = OptionalAttribute('w:color', ST_String)
 
 class CT_BorderBottom(BaseOxmlElement):
 
     type = OptionalAttribute('w:val', ST_String)
-    size = OptionalAttribute('w:sz', ST_TwipsMeasure)
+    size = OptionalAttribute('w:sz', XsdInt)
     space = OptionalAttribute('w:space', XsdInt)
     color = OptionalAttribute('w:color', ST_String)
 
 class CT_BorderRight(BaseOxmlElement):
 
     type = OptionalAttribute('w:val', ST_String)
-    size = OptionalAttribute('w:sz', ST_TwipsMeasure)
+    size = OptionalAttribute('w:sz', XsdInt)
     space = OptionalAttribute('w:space', XsdInt)
     color = OptionalAttribute('w:color', ST_String)
