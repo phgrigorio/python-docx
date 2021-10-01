@@ -226,6 +226,11 @@ from .text.parfmt import (  # noqa
     CT_Ind,
     CT_Jc,
     CT_PPr,
+    CT_Border,
+    CT_BorderTop,
+    CT_BorderLeft,
+    CT_BorderBottom,
+    CT_BorderRight,
     CT_Spacing,
     CT_TabStop,
     CT_TabStops,
@@ -235,6 +240,12 @@ register_element_cls('w:jc',              CT_Jc)
 register_element_cls('w:keepLines',       CT_OnOff)
 register_element_cls('w:keepNext',        CT_OnOff)
 register_element_cls('w:pageBreakBefore', CT_OnOff)
+register_element_cls('w:pPr',             CT_PPr)
+register_element_cls('w:pBdr',            CT_Border)
+register_element_cls('w:top',             CT_BorderTop)
+register_element_cls('w:left',            CT_BorderLeft)
+register_element_cls('w:bottom',          CT_BorderBottom)
+register_element_cls('w:right',           CT_BorderRight)
 register_element_cls('w:pPr',             CT_PPr)
 register_element_cls('w:pStyle',          CT_String)
 register_element_cls('w:spacing',         CT_Spacing)

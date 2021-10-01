@@ -8,7 +8,7 @@ from ...enum.text import (
     WD_ALIGN_PARAGRAPH, WD_LINE_SPACING, WD_TAB_ALIGNMENT, WD_TAB_LEADER
 )
 from ...shared import Length
-from ..simpletypes import ST_SignedTwipsMeasure, ST_TwipsMeasure
+from ..simpletypes import ST_SignedTwipsMeasure, ST_TwipsMeasure, ST_String, XsdInt
 from ..xmlchemy import (
     BaseOxmlElement, OneOrMore, OptionalAttribute, RequiredAttribute,
     ZeroOrOne
@@ -53,12 +53,30 @@ class CT_PPr(BaseOxmlElement):
     pageBreakBefore = ZeroOrOne('w:pageBreakBefore', successors=_tag_seq[4:])
     widowControl = ZeroOrOne('w:widowControl', successors=_tag_seq[6:])
     numPr = ZeroOrOne('w:numPr', successors=_tag_seq[7:])
+    border = ZeroOrOne('w:pBdr', successors=_tag_seq[9:])
     tabs = ZeroOrOne('w:tabs', successors=_tag_seq[11:])
     spacing = ZeroOrOne('w:spacing', successors=_tag_seq[22:])
     ind = ZeroOrOne('w:ind', successors=_tag_seq[23:])
     jc = ZeroOrOne('w:jc', successors=_tag_seq[27:])
     sectPr = ZeroOrOne('w:sectPr', successors=_tag_seq[35:])
     del _tag_seq
+
+    def _insert_border(self, border):
+        self.insert(0, border)
+        return border
+
+    @property
+    def border_top(self):
+        border = self.border
+        if border is None:
+            return None
+        return border.top
+
+    @border_top.setter
+    def border_top(self, value):
+        border = self.get_or_add_border()
+        border.border_top = value
+
 
     @property
     def first_line_indent(self):
@@ -346,3 +364,111 @@ class CT_TabStops(BaseOxmlElement):
                 return new_tab
         self.append(new_tab)
         return new_tab
+
+class CT_Border(BaseOxmlElement):
+
+    _border_tag_seq = (
+        'w:top', 'w:left', 'w:bottom', 'w:right'
+    )
+
+    top = ZeroOrOne('w:top', successors=())
+    left = ZeroOrOne('w:left', successors=())
+    bottom = ZeroOrOne('w:bottom', successors=())
+    right = ZeroOrOne('w:right', successors=())
+
+    @property
+    def border_top(self):
+        top = self.top
+        if top is None:
+            return None
+        return top
+
+    @border_top.setter
+    def border_top(self, value):
+        if value is None and self.top is None:
+            return
+        top = self.get_or_add_top()
+        top.type = 'single'
+        top.size = value
+        top.space = 0
+        top.color = 'auto'
+        
+    @property
+    def border_left(self):
+        left = self.left
+        if left is None:
+            return None
+        return left
+
+    @border_left.setter
+    def border_left(self, value):
+        if value is None and self.left is None:
+            return
+        left = self.get_or_add_left()
+        left.type = 'single'
+        left.size = value
+        left.space = 0
+        left.color = 'auto'
+
+    @property
+    def border_bottom(self):
+        bottom = self.bottom
+        if bottom is None:
+            return None
+        return bottom
+
+    @border_bottom.setter
+    def border_bottom(self, value):
+        if value is None and self.bottom is None:
+            return
+        bottom = self.get_or_add_bottom()
+        bottom.type = 'single'
+        bottom.size = value
+        bottom.space = 0
+        bottom.color = 'auto'
+
+    @property
+    def border_right(self):
+        right = self.right
+        if right is None:
+            return None
+        return right
+
+    @border_right.setter
+    def border_right(self, value):
+        if value is None and self.right is None:
+            return
+        right = self.get_or_add_right()
+        right.type = 'single'
+        right.size = value
+        right.space = 0
+        right.color = 'auto'
+
+
+class CT_BorderTop(BaseOxmlElement):
+
+    type = OptionalAttribute('w:val', ST_String)
+    size = OptionalAttribute('w:sz', ST_TwipsMeasure)
+    space = OptionalAttribute('w:space', XsdInt)
+    color = OptionalAttribute('w:color', ST_String)
+
+class CT_BorderLeft(BaseOxmlElement):
+
+    type = OptionalAttribute('w:val', ST_String)
+    size = OptionalAttribute('w:sz', ST_TwipsMeasure)
+    space = OptionalAttribute('w:space', XsdInt)
+    color = OptionalAttribute('w:color', ST_String)
+
+class CT_BorderBottom(BaseOxmlElement):
+
+    type = OptionalAttribute('w:val', ST_String)
+    size = OptionalAttribute('w:sz', ST_TwipsMeasure)
+    space = OptionalAttribute('w:space', XsdInt)
+    color = OptionalAttribute('w:color', ST_String)
+
+class CT_BorderRight(BaseOxmlElement):
+
+    type = OptionalAttribute('w:val', ST_String)
+    size = OptionalAttribute('w:sz', ST_TwipsMeasure)
+    space = OptionalAttribute('w:space', XsdInt)
+    color = OptionalAttribute('w:color', ST_String)

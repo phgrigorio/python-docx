@@ -39,6 +39,34 @@ class ParagraphFormat(ElementProxy):
         pPr = self._element.get_or_add_pPr()
         pPr.jc_val = value
 
+    # @property
+    # def border(self):
+    #     pPr = self._element.pPr
+    #     if pPr is None:
+    #         return None
+    #     return pPr.border
+    #
+    # @border.setter
+    # def border(self, value):
+    #     pPr = self._element.get_or_add_pPr()
+    #     pPr.border = value
+
+    @property
+    def border(self):
+        pPr = self._element.pPr
+        if pPr is None:
+            return None
+        return pPr.border
+
+    @border.setter
+    def border(self, value):
+        pPr = self._element.get_or_add_pPr()
+        border = pPr.get_or_add_border()
+        border.border_top = value
+        border.border_left = value
+        border.border_bottom = value
+        border.border_right = value
+
     @property
     def first_line_indent(self):
         """
